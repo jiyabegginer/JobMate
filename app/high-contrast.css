@@ -1,0 +1,51 @@
+/* High Contrast Mode */
+.high-contrast {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #000000;
+  --card-foreground: #ffffff;
+  --popover: #000000;
+  --popover-foreground: #ffffff;
+  --primary: #ffff00;
+  --primary-foreground: #000000;
+  --secondary: #ffffff;
+  --secondary-foreground: #000000;
+  --muted: #333333;
+  --muted-foreground: #ffffff;
+  --accent: #ffff00;
+  --accent-foreground: #000000;
+  --destructive: #ff0000;
+  --destructive-foreground: #ffffff;
+  --border: #ffffff;
+  --input: #ffffff;
+  --ring: #ffff00;
+}
+
+.high-contrast a {
+  text-decoration: underline;
+}
+
+.high-contrast button {
+  border: 2px solid #ffffff;
+}
+
+.high-contrast img {
+  filter: grayscale(100%) contrast(120%);
+}
+
+.high-contrast :focus {
+  outline: 3px solid #ffff00 !important;
+  outline-offset: 2px;
+}
+
+.high-contrast .text-muted-foreground {
+  color: #ffffff !important;
+}
+
+.high-contrast .bg-muted {
+  background-color: #333333 !important;
+}
+
+.high-contrast .border {
+  border-color: #ffffff !important;
+}
