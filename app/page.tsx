@@ -24,70 +24,13 @@ import { useState } from "react"
 import JobSearchPage from "@/components/job-search-page"
 import LanguageSwitcher from "@/components/language-switcher"
 import AccessibilityMenu from "@/components/accessibility-menu"
-import { useI18n } from "@/contexts/i18n-context"
 
 export default function LandingPage() {
-  const { t } = useI18n()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("search")
-  const { language } = useI18n()
-
-  // Alternatif: Gunakan array fitur yang didefinisikan langsung
-  const getFreshGradFeatures = () => {
-    return language === "en"
-      ? [
-          "Special filters for entry-level jobs",
-          "CV templates optimized for fresh graduates",
-          "Interview tips and career preparation",
-          "Job recommendations suitable for new graduates",
-        ]
-      : [
-          "Filter khusus untuk pekerjaan entry-level",
-          "Template CV yang dioptimalkan untuk fresh graduate",
-          "Tips wawancara dan persiapan karir",
-          "Rekomendasi pekerjaan yang cocok untuk lulusan baru",
-        ]
-  }
-
-  const getStudentFeatures = () => {
-    return language === "en"
-      ? [
-          "Best internship programs",
-          "Flexible part-time jobs",
-          "Schedules that can be adjusted to your classes",
-          "Internship opportunities that can be converted to academic credits",
-        ]
-      : [
-          "Program magang dan internship terbaik",
-          "Pekerjaan paruh waktu yang fleksibel",
-          "Jadwal yang dapat disesuaikan dengan kuliah",
-          "Kesempatan magang yang dapat dikonversi menjadi kredit akademik",
-        ]
-  }
-
-  const getProfessionalFeatures = () => {
-    return language === "en"
-      ? [
-          "Jobs without age restrictions",
-          "Special filters: freelance, remote, and part-time",
-          '"Open to any age" label on job listings',
-          "CV templates that emphasize experience and skills",
-        ]
-      : [
-          "Pekerjaan tanpa batasan usia",
-          "Filter khusus: freelance, remote, dan part-time",
-          'Label "Terbuka untuk usia berapa pun" pada lowongan',
-          "Template CV yang menekankan pengalaman dan keahlian",
-        ]
-  }
 
   return (
     <div className="flex min-h-screen flex-col" style={{ backgroundColor: "#f7564e" }}>
-      {/* Skip to content link for keyboard users */}
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-white focus:z-50">
-        {t("accessibility.skipToContent")}
-      </a>
-
       {/* Header */}
       <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/90">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -99,19 +42,10 @@ export default function LandingPage() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <Link href="#features" className="text-sm font-medium hover:text-gray-600">
-              {t("common.features")}
+              Fitur
             </Link>
             <Link href="#target-users" className="text-sm font-medium hover:text-gray-600">
-              {t("common.users")}
-            </Link>
-            <Link href="#how-it-works" className="text-sm font-medium hover:text-gray-600">
-              {t("common.howItWorks")}
-            </Link>
-            <Link href="#differentiation" className="text-sm font-medium hover:text-gray-600">
-              {t("common.advantages")}
-            </Link>
-            <Link href="#mobile-app" className="text-sm font-medium hover:text-gray-600">
-              {t("common.mobileApp")}
+              Pengguna
             </Link>
             <Link href="/training-catalog" className="text-sm font-medium hover:text-gray-600">
               Pelatihan
@@ -130,10 +64,10 @@ export default function LandingPage() {
               <LanguageSwitcher />
             </div>
             <Link href="/auth/login">
-              <Button variant="outline">{t("common.login")}</Button>
+              <Button variant="outline">Masuk</Button>
             </Link>
             <Link href="/auth/register">
-              <Button style={{ backgroundColor: "#f6c07c", color: "#000000" }}>{t("common.register")}</Button>
+              <Button style={{ backgroundColor: "#f6c07c", color: "#000000" }}>Daftar</Button>
             </Link>
           </div>
 
@@ -161,35 +95,7 @@ export default function LandingPage() {
                 className="text-sm font-medium hover:text-gray-600"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {t("common.features")}
-              </Link>
-              <Link
-                href="#target-users"
-                className="text-sm font-medium hover:text-gray-600"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t("common.users")}
-              </Link>
-              <Link
-                href="#how-it-works"
-                className="text-sm font-medium hover:text-gray-600"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t("common.howItWorks")}
-              </Link>
-              <Link
-                href="#differentiation"
-                className="text-sm font-medium hover:text-gray-600"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t("common.advantages")}
-              </Link>
-              <Link
-                href="#mobile-app"
-                className="text-sm font-medium hover:text-gray-600"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t("common.mobileApp")}
+                Fitur
               </Link>
               <Link
                 href="/training-catalog"
@@ -215,12 +121,12 @@ export default function LandingPage() {
               <div className="flex flex-col space-y-2 pt-2">
                 <Link href="/auth/login">
                   <Button variant="outline" className="w-full">
-                    {t("common.login")}
+                    Masuk
                   </Button>
                 </Link>
                 <Link href="/auth/register">
                   <Button style={{ backgroundColor: "#f6c07c", color: "#000000" }} className="w-full">
-                    {t("common.register")}
+                    Daftar
                   </Button>
                 </Link>
               </div>
@@ -229,15 +135,17 @@ export default function LandingPage() {
         )}
       </header>
 
-      <main id="main-content" className="flex-1">
-        {/* App Demo Section */}
+      <main className="flex-1">
+        {/* Hero Section */}
         <section className="w-full py-6 md:py-12">
           <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
               <h1 className="text-3xl font-bold tracking-tighter md:text-4xl/tight text-white">
-                {t("home.hero.title")}
+                Bangun Karir Impian Anda dengan JobMate
               </h1>
-              <p className="max-w-[900px] text-white md:text-xl/relaxed">{t("home.hero.subtitle")}</p>
+              <p className="max-w-[900px] text-white md:text-xl/relaxed">
+                Platform lengkap untuk pencarian kerja, pengembangan skill, dan tracking progress karir
+              </p>
             </div>
 
             <div className="bg-white rounded-xl overflow-hidden shadow-xl max-w-4xl mx-auto">
@@ -246,25 +154,25 @@ export default function LandingPage() {
                   <TabsTrigger value="search" className="data-[state=active]:bg-white rounded-none h-full">
                     <div className="flex flex-col items-center">
                       <Search className="h-5 w-5 mb-1" aria-hidden="true" />
-                      <span className="text-xs">{t("common.search")}</span>
+                      <span className="text-xs">Cari</span>
                     </div>
                   </TabsTrigger>
                   <TabsTrigger value="saved" className="data-[state=active]:bg-white rounded-none h-full">
                     <div className="flex flex-col items-center">
                       <Star className="h-5 w-5 mb-1" aria-hidden="true" />
-                      <span className="text-xs">{t("common.saved")}</span>
+                      <span className="text-xs">Tersimpan</span>
                     </div>
                   </TabsTrigger>
                   <TabsTrigger value="applications" className="data-[state=active]:bg-white rounded-none h-full">
                     <div className="flex flex-col items-center">
                       <Briefcase className="h-5 w-5 mb-1" aria-hidden="true" />
-                      <span className="text-xs">{t("common.applications")}</span>
+                      <span className="text-xs">Lamaran</span>
                     </div>
                   </TabsTrigger>
                   <TabsTrigger value="profile" className="data-[state=active]:bg-white rounded-none h-full">
                     <div className="flex flex-col items-center">
                       <Users className="h-5 w-5 mb-1" aria-hidden="true" />
-                      <span className="text-xs">{t("common.profile")}</span>
+                      <span className="text-xs">Profil</span>
                     </div>
                   </TabsTrigger>
                 </TabsList>
@@ -278,13 +186,13 @@ export default function LandingPage() {
                     <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
                       <Star className="h-8 w-8 text-gray-400" aria-hidden="true" />
                     </div>
-                    <h3 className="font-medium">{t("common.noSavedJobs")}</h3>
-                    <p className="text-sm text-gray-500 mt-1 mb-4">{t("common.saveJobsToView")}</p>
+                    <h3 className="font-medium">Belum ada pekerjaan tersimpan</h3>
+                    <p className="text-sm text-gray-500 mt-1 mb-4">Simpan pekerjaan untuk melihatnya di sini</p>
                     <Button
                       onClick={() => setActiveTab("search")}
                       style={{ backgroundColor: "#f6c07c", color: "#000000" }}
                     >
-                      {t("common.findJobs")}
+                      Cari Pekerjaan
                     </Button>
                   </div>
                 </TabsContent>
@@ -294,13 +202,15 @@ export default function LandingPage() {
                     <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
                       <Briefcase className="h-8 w-8 text-gray-400" aria-hidden="true" />
                     </div>
-                    <h3 className="font-medium">{t("common.noActiveApplications")}</h3>
-                    <p className="text-sm text-gray-500 mt-1 mb-4">{t("common.startApplying")}</p>
+                    <h3 className="font-medium">Belum ada lamaran aktif</h3>
+                    <p className="text-sm text-gray-500 mt-1 mb-4">
+                      Mulai melamar pekerjaan untuk melihat status di sini
+                    </p>
                     <Button
                       onClick={() => setActiveTab("search")}
                       style={{ backgroundColor: "#f6c07c", color: "#000000" }}
                     >
-                      {t("common.findJobs")}
+                      Cari Pekerjaan
                     </Button>
                   </div>
                 </TabsContent>
@@ -310,17 +220,19 @@ export default function LandingPage() {
                     <div className="w-20 h-20 rounded-full bg-gray-200 mb-3 flex items-center justify-center">
                       <Users className="h-10 w-10 text-gray-400" aria-hidden="true" />
                     </div>
-                    <h3 className="font-bold text-lg">{t("common.loginOrRegister")}</h3>
-                    <p className="text-sm text-gray-500 mt-1 mb-6 text-center max-w-xs">{t("common.loginToAccess")}</p>
+                    <h3 className="font-bold text-lg">Masuk atau Daftar</h3>
+                    <p className="text-sm text-gray-500 mt-1 mb-6 text-center max-w-xs">
+                      Masuk untuk mengakses fitur lengkap JobMate
+                    </p>
                     <div className="flex gap-3 w-full max-w-xs">
                       <Link href="/auth/register" className="flex-1">
                         <Button className="w-full" style={{ backgroundColor: "#f6c07c", color: "#000000" }}>
-                          {t("common.register")}
+                          Daftar
                         </Button>
                       </Link>
                       <Link href="/auth/login" className="flex-1">
                         <Button variant="outline" className="w-full">
-                          {t("common.login")}
+                          Masuk
                         </Button>
                       </Link>
                     </div>
@@ -331,114 +243,9 @@ export default function LandingPage() {
 
             <div className="flex justify-center mt-8">
               <Button size="lg" className="bg-white text-black hover:bg-gray-100">
-                {t("common.downloadApp")}
+                Download App
                 <ChevronRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Target User Segmentation */}
-        <section id="target-users" className="w-full py-12 md:py-24 bg-white">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">{t("home.targetUsers.title")}</h2>
-              <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">{t("home.targetUsers.subtitle")}</p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="overflow-hidden">
-                <div className="h-2 bg-blue-500"></div>
-                <CardHeader>
-                  <CardTitle>{t("home.targetUsers.freshGrad.title")}</CardTitle>
-                  <CardDescription>{t("home.targetUsers.freshGrad.description")}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {getFreshGradFeatures().map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <div className="rounded-full bg-blue-100 p-1 mt-0.5">
-                          <svg
-                            className="h-3 w-3 text-blue-600"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className="w-full mt-4" style={{ backgroundColor: "#f7564e" }}>
-                    {t("home.targetUsers.freshGrad.cta")}
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden">
-                <div className="h-2 bg-purple-500"></div>
-                <CardHeader>
-                  <CardTitle>{t("home.targetUsers.students.title")}</CardTitle>
-                  <CardDescription>{t("home.targetUsers.students.description")}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {getStudentFeatures().map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <div className="rounded-full bg-purple-100 p-1 mt-0.5">
-                          <svg
-                            className="h-3 w-3 text-purple-600"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className="w-full mt-4" style={{ backgroundColor: "#f7564e" }}>
-                    {t("home.targetUsers.students.cta")}
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden">
-                <div className="h-2 bg-green-500"></div>
-                <CardHeader>
-                  <CardTitle>{t("home.targetUsers.professionals.title")}</CardTitle>
-                  <CardDescription>{t("home.targetUsers.professionals.description")}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {getProfessionalFeatures().map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <div className="rounded-full bg-green-100 p-1 mt-0.5">
-                          <svg
-                            className="h-3 w-3 text-green-600"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className="w-full mt-4" style={{ backgroundColor: "#f7564e" }}>
-                    {t("home.targetUsers.professionals.cta")}
-                  </Button>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>
@@ -447,24 +254,26 @@ export default function LandingPage() {
         <section id="features" className="w-full py-12 md:py-24 bg-white">
           <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">{t("home.features.title")}</h2>
-              <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">{t("home.features.subtitle")}</p>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Fitur Unggulan JobMate</h2>
+              <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
+                Semua yang Anda butuhkan untuk mengembangkan karir dan menemukan pekerjaan impian
+              </p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               <Card>
                 <CardHeader>
                   <Filter className="h-10 w-10 mb-2" style={{ color: "#f7564e" }} aria-hidden="true" />
-                  <CardTitle>{t("home.features.jobFilter.title")}</CardTitle>
-                  <CardDescription>{t("home.features.jobFilter.description")}</CardDescription>
+                  <CardTitle>Pencarian Cerdas</CardTitle>
+                  <CardDescription>Filter pekerjaan berdasarkan lokasi, gaji, dan kategori yang sesuai</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="rounded-lg bg-gray-100 p-3">
                     <div className="flex gap-2 mb-2">
-                      <Badge>Location</Badge>
-                      <Badge>Salary</Badge>
-                      <Badge>Category</Badge>
+                      <Badge>Lokasi</Badge>
+                      <Badge>Gaji</Badge>
+                      <Badge>Kategori</Badge>
                     </div>
-                    <div className="text-sm text-gray-600">{t("home.features.jobFilter.detail")}</div>
+                    <div className="text-sm text-gray-600">Filter yang mudah digunakan</div>
                   </div>
                 </CardContent>
               </Card>
@@ -472,59 +281,55 @@ export default function LandingPage() {
               <Card>
                 <CardHeader>
                   <Clock className="h-10 w-10 mb-2" style={{ color: "#f7564e" }} aria-hidden="true" />
-                  <CardTitle>{t("home.features.realtimeTracking.title")}</CardTitle>
-                  <CardDescription>{t("home.features.realtimeTracking.description")}</CardDescription>
+                  <CardTitle>Tracking Status</CardTitle>
+                  <CardDescription>Pantau status lamaran pekerjaan Anda secara real-time</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
-                      <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">{t("common.sent")}</Badge>
+                      <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">Terkirim</Badge>
                       <div className="h-0.5 flex-1 bg-gray-200"></div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">
-                        {t("common.processed")}
-                      </Badge>
+                      <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">Diproses</Badge>
                       <div className="h-0.5 flex-1 bg-gray-200"></div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Badge className="bg-green-100 text-green-800 hover:bg-green-100">{t("common.accepted")}</Badge>
-                      <div className="h-0.5 flex-1 bg-gray-200"></div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Badge className="bg-red-100 text-red-800 hover:bg-red-100">{t("common.rejected")}</Badge>
+                      <Badge className="bg-green-100 text-green-800 hover:bg-green-100">Diterima</Badge>
                       <div className="h-0.5 flex-1 bg-gray-200"></div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
+
               <Card>
                 <CardHeader>
                   <Building className="h-10 w-10 mb-2" style={{ color: "#f7564e" }} aria-hidden="true" />
-                  <CardTitle>{t("home.features.jobCategorization.title")}</CardTitle>
-                  <CardDescription>{t("home.features.jobCategorization.description")}</CardDescription>
+                  <CardTitle>Kategori Pekerjaan</CardTitle>
+                  <CardDescription>Temukan pekerjaan berdasarkan bidang dan tingkat keahlian</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-2">
                     <div className="rounded-lg bg-gray-100 p-2 text-center">
-                      <span className="text-sm font-medium">{t("common.general")}</span>
+                      <span className="text-sm font-medium">Umum</span>
                     </div>
                     <div className="rounded-lg bg-gray-100 p-2 text-center">
-                      <span className="text-sm font-medium">{t("common.highSkill")}</span>
+                      <span className="text-sm font-medium">Keahlian Tinggi</span>
                     </div>
                     <div className="rounded-lg bg-gray-100 p-2 text-center">
-                      <span className="text-sm font-medium">{t("common.freelance")}</span>
+                      <span className="text-sm font-medium">Freelance</span>
                     </div>
                     <div className="rounded-lg bg-gray-100 p-2 text-center">
-                      <span className="text-sm font-medium">{t("common.internship")}</span>
+                      <span className="text-sm font-medium">Magang</span>
                     </div>
                   </div>
                 </CardContent>
               </Card>
+
               <Card>
                 <CardHeader>
                   <BookOpen className="h-10 w-10 mb-2" style={{ color: "#f7564e" }} aria-hidden="true" />
-                  <CardTitle>Katalog Pelatihan & Sertifikasi</CardTitle>
+                  <CardTitle>Katalog Pelatihan</CardTitle>
                   <CardDescription>Temukan pelatihan dan sertifikasi yang relevan dengan karir Anda</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -609,20 +414,22 @@ export default function LandingPage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight text-white">
-                  {t("home.cta.title")}
+                  Siap Memulai Perjalanan Karir Anda?
                 </h2>
-                <p className="max-w-[600px] text-white md:text-xl/relaxed">{t("home.cta.subtitle")}</p>
+                <p className="max-w-[600px] text-white md:text-xl/relaxed">
+                  Bergabunglah dengan ribuan profesional yang telah mempercayai JobMate
+                </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Link href="/auth/register">
                   <Button size="lg" style={{ backgroundColor: "#f6c07c", color: "#000000" }}>
-                    {t("common.signUpNow")}
+                    Daftar Sekarang
                     <ChevronRight className="ml-2 h-4 w-4" aria-hidden="true" />
                   </Button>
                 </Link>
                 <Link href="/cv-template">
                   <Button variant="outline" className="bg-white" size="lg">
-                    {t("common.createCV")}
+                    Buat CV
                   </Button>
                 </Link>
               </div>
@@ -664,7 +471,7 @@ export default function LandingPage() {
                 </li>
                 <li>
                   <Link href="#" className="text-white/80 hover:text-white">
-                    Chatbot
+                    Pelatihan
                   </Link>
                 </li>
               </ul>
