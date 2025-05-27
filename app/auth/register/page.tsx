@@ -116,7 +116,7 @@ export default function RegisterPage() {
       return
     }
 
-    // Simulate API call
+    // Simulate registration success
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)
@@ -134,7 +134,7 @@ export default function RegisterPage() {
       return
     }
 
-    // Simulate API call
+    // Simulate OTP verification success
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)

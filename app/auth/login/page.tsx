@@ -47,7 +47,7 @@ export default function LoginPage() {
       return
     }
 
-    // Simulate API call
+    // Simulate login success
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)
